@@ -1,0 +1,51 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: user-crud
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/userdb}
+    username: ${DB_USERNAME:userapp}
+    password: ${DB_PASSWORD:change-me}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  jackson:
+    default-property-inclusion: non_null
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+app:
+  jwt:
+    # Development default only. Set JWT_SECRET to a secure random value in deployments.
+    secret: ${JWT_SECRET:local-dev-only-change-this-secret-key-32bytes-minimum}
+    expiration-ms: ${JWT_EXPIRATION_MS:3600000}
+  demo:
+    username: ${DEMO_USERNAME:demo}
+    password: ${DEMO_PASSWORD:demo12345}
+  profile-service:
+    base-url: ${PROFILE_SERVICE_URL:http://localhost:8099}
+resilience4j:
+  circuitbreaker:
+    instances:
+      profileService:
+        registerHealthIndicator: true
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 5
+        minimumNumberOfCalls: 3
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 2
+        automaticTransitionFromOpenToHalfOpenEnabled: true
