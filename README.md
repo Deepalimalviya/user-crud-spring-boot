@@ -1,4 +1,4 @@
-# Deepali — User CRUD Spring Boot API
+# Deepali — User CRUD Spring Boot API 
 
 **Author:** Deepali  
 **Stack:** Java 21, Spring Boot 3.4, Spring Web, Spring Security + JWT, Spring Data JPA/Hibernate, PostgreSQL, OpenAPI/Swagger UI, Resilience4j, JUnit 5, Mockito, Docker, GitHub Actions, Jenkins.
