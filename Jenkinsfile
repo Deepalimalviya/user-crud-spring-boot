@@ -4,6 +4,7 @@ pipeline {
         jdk 'jdk21'
         maven 'maven3'
     }
+
     environment {
         IMAGE_NAME = 'deepali/user-crud'
         IMAGE_TAG = "${BUILD_NUMBER}"
